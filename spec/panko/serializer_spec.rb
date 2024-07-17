@@ -743,15 +743,16 @@ describe Panko::Serializer do
   end
 
   context "key_type" do
-    let(:data) { { "created_at" => created_at } }
+    let(:configuration) { Panko::Configuration.new }
+    let(:data) { {"created_at" => created_at} }
     let(:created_at) { "2023-04-18T09:24:41+00:00" }
 
+    before do
+      allow(Panko).to receive_messages(configuration: configuration)
+    end
+
     context "with camelCase" do
-      before do
-        Panko.configure do |config|
-          config.key_type = "camelCase"
-        end
-      end
+      before { configuration.key_type = 'camelCase' }
 
       context "with key_type" do
         let(:serializer_class) do
@@ -762,8 +763,7 @@ describe Panko::Serializer do
 
         it "has createdAt" do
           expect(data).to serialized_as(serializer_class,
-            "createdAt" => created_at
-          )
+            "createdAt" => created_at)
         end
       end
 
@@ -780,18 +780,13 @@ describe Panko::Serializer do
 
         it "has createdAt" do
           expect(data).to serialized_as(serializer_class,
-            "createdAt" => created_at
-          )
+            "createdAt" => created_at)
         end
       end
     end
 
     context "with CamelCase" do
-      before do
-        Panko.configure do |config|
-          config.key_type = "CamelCase"
-        end
-      end
+      before { configuration.key_type = 'CamelCase' }
 
       context "with key_type" do
         let(:serializer_class) do
@@ -802,8 +797,7 @@ describe Panko::Serializer do
 
         it "has CreatedAt" do
           expect(data).to serialized_as(serializer_class,
-            "CreatedAt" => created_at
-          )
+            "CreatedAt" => created_at)
         end
       end
 
@@ -820,8 +814,7 @@ describe Panko::Serializer do
 
         it "has CreatedAt" do
           expect(data).to serialized_as(serializer_class,
-            "CreatedAt" => created_at
-          )
+            "CreatedAt" => created_at)
         end
       end
     end
