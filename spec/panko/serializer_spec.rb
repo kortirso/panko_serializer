@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "spec_helper"
-require "active_record/connection_adapters/postgresql_adapter"
+#require "active_record/connection_adapters/postgresql_adapter"
 
 describe Panko::Serializer do
   class FooSerializer < Panko::Serializer
@@ -738,6 +738,87 @@ describe Panko::Serializer do
       it "has createdAt" do
         expect(data).to serialized_as(serializer_class,
           "createdAt" => created_at)
+      end
+    end
+  end
+
+  context "key_type" do
+    let(:data) { { "created_at" => created_at } }
+    let(:created_at) { "2023-04-18T09:24:41+00:00" }
+
+    context "with camelCase"
+      before do
+        Panko.configure do |config|
+          config.key_type = "camelCase"
+        end
+      end
+
+      context "with key_type" do
+        let(:serializer_class) do
+          Class.new(Panko::Serializer) do
+            attributes :created_at
+          end
+        end
+
+        it "has createdAt" do
+          expect(data).to serialized_as(serializer_class,
+            "createdAt" => created_at)
+        end
+      end
+
+      context "with key_type + method_fields" do
+        let(:serializer_class) do
+          Class.new(Panko::Serializer) do
+            attributes :created_at
+
+            def created_at
+              "2023-04-18T09:24:41+00:00"
+            end
+          end
+        end
+
+        it "has createdAt" do
+          expect(data).to serialized_as(serializer_class,
+            "createdAt" => created_at)
+        end
+      end
+    end
+
+    context "with CamelCase"
+      before do
+        Panko.configure do |config|
+          config.key_type = "CamelCase"
+        end
+      end
+
+      context "with key_type" do
+        let(:serializer_class) do
+          Class.new(Panko::Serializer) do
+            attributes :created_at
+          end
+        end
+
+        it "has CreatedAt" do
+          expect(data).to serialized_as(serializer_class,
+            "CreatedAt" => created_at)
+        end
+      end
+
+      context "with key_type + method_fields" do
+        let(:serializer_class) do
+          Class.new(Panko::Serializer) do
+            attributes :created_at
+
+            def created_at
+              "2023-04-18T09:24:41+00:00"
+            end
+          end
+        end
+
+        it "has CreatedAt" do
+          expect(data).to serialized_as(serializer_class,
+            "CreatedAt" => created_at)
+        end
       end
     end
   end
