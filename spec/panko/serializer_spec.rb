@@ -786,7 +786,7 @@ describe Panko::Serializer do
       end
     end
 
-    context "with CamelCase"
+    context "with CamelCase" do
       before do
         Panko.configure do |config|
           config.key_type = "CamelCase"
