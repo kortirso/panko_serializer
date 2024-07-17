@@ -762,7 +762,8 @@ describe Panko::Serializer do
 
         it "has createdAt" do
           expect(data).to serialized_as(serializer_class,
-            "createdAt" => created_at)
+            "createdAt" => created_at
+          )
         end
       end
 
@@ -779,7 +780,8 @@ describe Panko::Serializer do
 
         it "has createdAt" do
           expect(data).to serialized_as(serializer_class,
-            "createdAt" => created_at)
+            "createdAt" => created_at
+          )
         end
       end
     end
@@ -800,7 +802,8 @@ describe Panko::Serializer do
 
         it "has CreatedAt" do
           expect(data).to serialized_as(serializer_class,
-            "CreatedAt" => created_at)
+            "CreatedAt" => created_at
+          )
         end
       end
 
@@ -817,7 +820,8 @@ describe Panko::Serializer do
 
         it "has CreatedAt" do
           expect(data).to serialized_as(serializer_class,
-            "CreatedAt" => created_at)
+            "CreatedAt" => created_at
+          )
         end
       end
     end
