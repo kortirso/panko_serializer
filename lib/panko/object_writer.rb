@@ -30,12 +30,6 @@ class Panko::ObjectWriter
       @next_key = nil
     end
 
-    puts @values
-    puts value
-    puts key
-
-    puts @values.last
-
     @values.last[key] = value.as_json
   end
 

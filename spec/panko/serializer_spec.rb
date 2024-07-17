@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "spec_helper"
-#require "active_record/connection_adapters/postgresql_adapter"
+require "active_record/connection_adapters/postgresql_adapter"
 
 describe Panko::Serializer do
   class FooSerializer < Panko::Serializer
