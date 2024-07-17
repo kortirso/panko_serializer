@@ -746,7 +746,7 @@ describe Panko::Serializer do
     let(:data) { { "created_at" => created_at } }
     let(:created_at) { "2023-04-18T09:24:41+00:00" }
 
-    context "with camelCase"
+    context "with camelCase" do
       before do
         Panko.configure do |config|
           config.key_type = "camelCase"
