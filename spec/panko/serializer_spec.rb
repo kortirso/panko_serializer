@@ -752,7 +752,7 @@ describe Panko::Serializer do
     end
 
     context "with camelCase" do
-      before { configuration.key_type = 'camelCase' }
+      before { configuration.key_type = "camelCase" }
 
       context "with key_type" do
         let(:serializer_class) do
@@ -786,7 +786,7 @@ describe Panko::Serializer do
     end
 
     context "with CamelCase" do
-      before { configuration.key_type = 'CamelCase' }
+      before { configuration.key_type = "CamelCase" }
 
       context "with key_type" do
         let(:serializer_class) do
